@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STP Robotics Club</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 80px 20px 40px;
+            position: relative;
+            display: none;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #home {
+            background: linear-gradient(135deg, #00216ffb 0%, #b8860b 100%);
+        }
+
+        #artificial-ignorance {
+            background: linear-gradient(135deg, #000000 25%, #b8860b 100%);
+        }
+
+        #junior-varsity {
+            background: linear-gradient(135deg, #ff1493 0%, #1df500 100%);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 8px 16px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .circuit-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.15;
+        }
+
+        .content-area {
+            max-width: 2000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 60px;
+            min-height: 1500px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: white;
+            font-size: 48px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 40px;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .team-title {
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 20px;
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .content-area {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg class="circuit-overlay" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="circuit" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <path d="M10 10 L50 10 L50 50" stroke="white" stroke-width="2" fill="none"/>
+                <circle cx="50" cy="50" r="4" fill="white"/>
+                <path d="M50 50 L90 50 L90 90" stroke="white" stroke-width="2" fill="none"/>
+                <circle cx="90" cy="90" r="4" fill="white"/>
+                <path d="M90 90 L130 90 L130 50" stroke="white" stroke-width="2" fill="none"/>
+                <circle cx="130" cy="50" r="4" fill="white"/>
+                <path d="M130 50 L170 50 L170 10" stroke="white" stroke-width="2" fill="none"/>
+                <circle cx="170" cy="10" r="4" fill="white"/>
+                <path d="M10 90 L30 90" stroke="white" stroke-width="2" fill="none"/>
+                <path d="M170 90 L190 90" stroke="white" stroke-width="2" fill="none"/>
+                <rect x="25" y="85" width="10" height="10" fill="white"/>
+                <rect x="165" y="85" width="10" height="10" fill="white"/>
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#circuit)"/>
+    </svg>
+
+    <nav>
+        <div class="logo">STP Robotics Club</div>
+        <ul class="nav-links">
+            <li><a href="#" data-page="home">Home</a></li>
+            <li><a href="#" data-page="artificial-ignorance">Artificial Ignorance</a></li>
+            <li><a href="#" data-page="junior-varsity">Junior Varsity</a></li>
+        </ul>
+    </nav>
+
+    <div id="home" class="page active">
+        <div class="content-area">
+            <h1>Welcome to the SPHS Robotics Club</h1>
+            <p>Instagram: </p>
+        </div>
+    </div>
+
+    <div id="artificial-ignorance" class="page">
+        <div class="content-area">
+            <h1 class="team-title">Artificial Ignorance</h1>
+            <!-- Content to be added -->
+        </div>
+    </div>
+
+    <div id="junior-varsity" class="page">
+        <div class="content-area">
+            <h1 class="team-title">Junior Varsity</h1>
+            <!-- Content to be added -->
+        </div>
+    </div>
+
+    <script>
+        const links = document.querySelectorAll('.nav-links a');
+        const pages = document.querySelectorAll('.page');
+
+        links.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetPage = link.getAttribute('data-page');
+                
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                document.getElementById(targetPage).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
