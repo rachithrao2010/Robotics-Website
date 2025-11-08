@@ -17,7 +17,7 @@ body {
 }
 
 #home {
-    background: linear-gradient(135deg, #160f54 0%, #b8860b 100%);
+    background: linear-gradient(135deg, #160f54 15%, #b8860b 100%);
 }
 
 #artificial-ignorance {
@@ -94,7 +94,7 @@ nav {
     border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     padding: 60px;
-    min-height: 500px;
+    min-height: 1000px;
     position: relative;
     z-index: 1;
 }
@@ -137,4 +137,44 @@ h1 {
     h1 {
         font-size: 32px;
     }
+}
+.gallery {
+    display: flex;
+    text-align: center;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px;
+    scroll-behavior: smooth;
+    max-width: calc(400px * 2 + 20px * 2);  /* Shows 2 images + gaps */
+}
+
+.gallery img {
+    height: 300px;
+    width: auto;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
+    transition: transform 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+.gallery::-webkit-scrollbar {
+    height: 10px;
+}
+
+.gallery::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.gallery::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.gallery::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
 }
